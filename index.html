@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="myApp">
 <head lang="en">
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+    <script src="myApp.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="UTF-8">
     <title>ngMadLibs</title>
 </head>
-<body>
+<body ng-controller="MyCtrl">
     <div class="container">
         <div class="row">
             <div class="form-group col-xs-4">
@@ -53,17 +54,22 @@
                 <input type="text" class="form-control" ng-model="hugeNumber" placeholder="Huge Number" />
             </div>
         </div>
-        <p ng-init="femaleName='Female Name'; jobTitle='Job Title'; tediousTask='Tedious Task'; dirtyTask='Dirty Task'; celebrity='Celebrity'; uselessSkill='Useless Skill'; adjective='adjective'; obnoxiuousCelbertity='Obnoxiuous Celbertity'; hugeNumber='Huge Number';">
-            <strong>{{femaleName}}</strong> was a <strong>{{jobTitle}}</strong> who loved technology. Although she
-            loved parts of her job, she absolutely hated
+        <div class="row">
+            <div class="form-group col-xs-4">
+                <label>Gender</label>
+                <select ng-change="changed()" ng-model="gender" ng-options="gender.label for gender in genders"></select>
+            </div>
+        </div>
+            <strong>{{femaleName}}</strong> was a <strong>{{jobTitle}}</strong> who loved technology. Although {{secondPerson}}
+            loved parts of {{firstPersion}} job, {{secondPerson}} absolutely hated
             <strong>{{tediousTask}}</strong> and <strong>{{dirtyTask}}</strong>. So, <strong>{{femaleName}}</strong>
-            met with her life mentor <strong>{{celebrity}}</strong> who told her to
+            met with {{firstPersion}} life mentor <strong>{{celebrity}}</strong> who told {{firstPersion}} to
             learn how to <strong>{{uselessSkill}}</strong> with Thinkful. Thinkful didn't offer a course on
-            <strong>{{uselessSkill}}</strong> so she studied
+            <strong>{{uselessSkill}}</strong> so {{secondPerson}} studied
             programming instead.
         </p>
         <p>
-            What a great decision! With her new skills, <strong>{{femaleName}}</strong> built a(n) <strong>{{adjective}}</strong>
+            What a great decision! With {{firstPersion}} new skills, <strong>{{femaleName}}</strong> built a(n) <strong>{{adjective}}</strong>
             robot named
             <strong>{{obnoxiuousCelbertity}}</strong> that not only loved <strong>{{dirtyTask}}</strong> but did it
             <strong>{{hugeNumber}}</strong> faster.
