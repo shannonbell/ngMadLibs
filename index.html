@@ -1,73 +1,119 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app='myApp'>
 <head lang="en">
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+    <script src="myApp.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="UTF-8">
     <title>ngMadLibs</title>
 </head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="form-group col-xs-4">
-                <img src="mad-lib-happy-face.png"  width="180"/>
+<body  ng-controller="MyCtrl">
+    <form name="madLibForm" novalidate ng-submit="submit()">
+        <div class="container">
+            <div class="row">
+                <div class="form-group col-xs-4">
+                    <img src="mad-lib-happy-face.png"  width="180"/>
+                </div>
+                <div class="form-group col-xs-8">
+                    <img src="ng-mad-libs-logo.png" />
+                    <h1>Automate This!</h1>
+                </div>
             </div>
-            <div class="form-group col-xs-8">
-                <img src="ng-mad-libs-logo.png" />
-                <h1>Automate This!</h1>
+            <div ng-show="showForm">
+                <h2>Provide the following words:</h2>
+                <div class="row">
+                    <div class="form-group col-xs-4">
+                        <input type="text" name="femaleName" class="form-control" ng-model="femaleName" placeholder="Female Name" required />
+                        <span class="has-error" ng-if="madLibForm.$submitted && madLibForm.femaleName.$error.required">
+                            A Female Name is required!
+                        </span>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <input type="text" name="jobTitle" class="form-control" ng-model="jobTitle" placeholder="Job Title" required />
+                        <span class="has-error" ng-if="madLibForm.$submitted && madLibForm.jobTitle.$error.required">
+                            A Job Title is required!
+                        </span>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <input type="text" name="tediousTask" class="form-control" ng-model="tediousTask" placeholder="Tedious Task" required />
+                        <span class="has-error" ng-if="madLibForm.$submitted && madLibForm.tediousTask.$error.required">
+                            A Tedious Task is required!
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-4">
+                        <input type="text" name="dirtyTask" class="form-control" ng-model="dirtyTask" placeholder="Dirty Task" required />
+                        <span class="has-error" ng-if="madLibForm.$submitted && madLibForm.tediousTask.$error.required">
+                            A Dirty Task is required!
+                        </span>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <input type="text" name="celebrity" class="form-control" ng-model="celebrity" placeholder="Celebrity" required />
+                        <span class="has-error" ng-if="madLibForm.$submitted && madLibForm.celebrity.$error.required">
+                            A Celebrity is required!
+                        </span>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <input type="text" name="uselessSkill" class="form-control" ng-model="uselessSkill" placeholder="Useless Skill" required />
+                        <span class="has-error" ng-if="madLibForm.$submitted && madLibForm.uselessSkill.$error.required">
+                            A Useless Skill is required!
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-4">
+                        <input type="text" name="adjective" class="form-control" ng-model="adjective" placeholder="Adjective" required />
+                        <span class="has-error" ng-if="madLibForm.$submitted && madLibForm.adjective.$error.required">
+                            A Adjective is required!
+                        </span>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <input type="text" name="obnoxiuousCelbertity" class="form-control" ng-model="obnoxiuousCelbertity" placeholder="Obnoxiuous Celbertity" required />
+                        <span class="has-error" ng-if="madLibForm.$submitted && madLibForm.obnoxiuousCelbertity.$error.required">
+                            A Obnoxiuous Celbertity is required!
+                        </span>
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <input type="number" min="0" max="99" name="hugeNumber" class="form-control" ng-model="hugeNumber" placeholder="Huge Number" required />
+                        <span class="has-error" ng-if="madLibForm.$submitted && madLibForm.hugeNumber.$error.required">
+                            A Huge Number is required!
+                        </span>
+                        <span class="error" ng-show="madLibForm.hugeNumber.$error.number">
+                            Not valid number!
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-1">
+                        <input type="submit" value="Generate My Mad Lib" class="btn" />
+                    </div>
+                </div>
+            </div>
+            <div ng-show="!showForm">
+                <p>
+                    <strong>{{femaleName}}</strong> was a <strong>{{jobTitle}}</strong> who loved technology. Although she
+                    loved parts of her job, she absolutely hated
+                    <strong>{{tediousTask}}</strong> and <strong>{{dirtyTask}}</strong>. So, <strong>{{femaleName}}</strong>
+                    met with her life mentor <strong>{{celebrity}}</strong> who told her to
+                    learn how to <strong>{{uselessSkill}}</strong> with Thinkful. Thinkful didn't offer a course on
+                    <strong>{{uselessSkill}}</strong> so she studied
+                    programming instead.
+                </p>
+                <p>
+                    What a great decision! With her new skills, <strong>{{femaleName}}</strong> built a(n) <strong>{{adjective}}</strong>
+                    robot named
+                    <strong>{{obnoxiuousCelbertity}}</strong> that not only loved <strong>{{dirtyTask}}</strong> but did it
+                    <strong>{{hugeNumber}}</strong> faster.
+                </p>
+                <div class="row">
+                    <div class="form-group col-xs-1">
+                        <input type="button" value="Start Over" class="btn" ng-click="startOver()" />
+                    </div>
+                </div>
             </div>
         </div>
-        <h2>Provide the following words:</h2>
-        <div class="row">
-            <div class="form-group col-xs-4">
-                <input type="text" class="form-control" ng-model="femaleName" placeholder="Female Name" />
-            </div>
-            <div class="form-group col-xs-4">
-                <input type="text" class="form-control" ng-model="jobTitle" placeholder="Job Title" />
-            </div>
-            <div class="form-group col-xs-4">
-                <input type="text" class="form-control" ng-model="tediousTask" placeholder="Tedious Task" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-xs-4">
-                <input type="text" class="form-control" ng-model="dirtyTask" placeholder="Dirty Task" />
-            </div>
-            <div class="form-group col-xs-4">
-                <input type="text" class="form-control" ng-model="celebrity" placeholder="Celebrity" />
-            </div>
-            <div class="form-group col-xs-4">
-                <input type="text" class="form-control" ng-model="uselessSkill" placeholder="Useless Skill" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-xs-4">
-                <input type="text" class="form-control" ng-model="adjective" placeholder="Adjective" />
-            </div>
-            <div class="form-group col-xs-4">
-                <input type="text" class="form-control" ng-model="obnoxiuousCelbertity" placeholder="Obnoxiuous Celbertity" />
-            </div>
-            <div class="form-group col-xs-4">
-                <input type="text" class="form-control" ng-model="hugeNumber" placeholder="Huge Number" />
-            </div>
-        </div>
-        <p ng-init="femaleName='Female Name'; jobTitle='Job Title'; tediousTask='Tedious Task'; dirtyTask='Dirty Task'; celebrity='Celebrity'; uselessSkill='Useless Skill'; adjective='adjective'; obnoxiuousCelbertity='Obnoxiuous Celbertity'; hugeNumber='Huge Number';">
-            <strong>{{femaleName}}</strong> was a <strong>{{jobTitle}}</strong> who loved technology. Although she
-            loved parts of her job, she absolutely hated
-            <strong>{{tediousTask}}</strong> and <strong>{{dirtyTask}}</strong>. So, <strong>{{femaleName}}</strong>
-            met with her life mentor <strong>{{celebrity}}</strong> who told her to
-            learn how to <strong>{{uselessSkill}}</strong> with Thinkful. Thinkful didn't offer a course on
-            <strong>{{uselessSkill}}</strong> so she studied
-            programming instead.
-        </p>
-        <p>
-            What a great decision! With her new skills, <strong>{{femaleName}}</strong> built a(n) <strong>{{adjective}}</strong>
-            robot named
-            <strong>{{obnoxiuousCelbertity}}</strong> that not only loved <strong>{{dirtyTask}}</strong> but did it
-            <strong>{{hugeNumber}}</strong> faster.
-        </p>
-    </div>
+    </form>
 </body>
 </html>

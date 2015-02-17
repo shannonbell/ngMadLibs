@@ -28,4 +28,24 @@ angular.module('myApp', [])
             }
         }
 
+        $scope.showForm = true;
+
+        $scope.submit = function() {
+            if( $scope.madLibForm.$valid ) {
+                $scope.showForm = false;
+            }
+        }
+
+        $scope.startOver = function() {
+            $scope.showForm = true;
+            $scope.femaleName='';
+            $scope.jobTitle='';
+            $scope.tediousTask='';
+            $scope.dirtyTask='';
+            $scope.celebrity='';
+            $scope.uselessSkill='';
+            $scope.adjective='';
+            $scope.obnoxiuousCelbertity='';
+            $scope.hugeNumber='';
+        }
     });
